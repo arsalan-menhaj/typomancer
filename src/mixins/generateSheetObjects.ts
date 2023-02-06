@@ -3,21 +3,13 @@ import SheetObject from "./SheetObject";
 const statsObject = {};
 
 const getButtonElement: (inputText: string) => string | null = function(inputText: string): string {
-  if (inputText ===  '+' || inputText === '*') {
+  if (inputText ===  '+' || inputText === '*' || parseInt(inputText)
+    || inputText?.match(/^[0-9]+[d][0-9]+/g) || inputText?.match(/^[d][0-9]+/g)) {
     return  inputText;
-  }
-  
-  if (parseInt(inputText)) {
-    return inputText;
   }
   
   if (Object.keys(statsObject).includes(inputText)) { 
     return statsObject[inputText];
-  }
-
-  // dice
-  if (inputText?.match(/^[0-9]+[d][0-9]+/g) || inputText?.match(/^[d][0-9]+/g)) {
-    return inputText;
   }
 
   return null;
